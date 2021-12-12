@@ -1,19 +1,27 @@
 package com.reference.testing
 
-import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.boot.test.web.client.TestRestTemplate
+import org.springframework.http.MediaType
+import org.springframework.test.web.servlet.MockMvc
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.content
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
+@AutoConfigureMockMvc
 class ListControllerIntegrationTest {
+
+	// Application context started without the server
 	@Autowired
-	private val template: TestRestTemplate? = null
+	private val mvc: MockMvc? = null
 
 	@Test
-	fun test() {
-			val response = template!!.getForEntity("/", String::class.java)
-			Assertions.assertThat(response.body).isEqualTo("Greetings from Spring Boot!")
-		}
+	fun getHello() {
+		mvc!!.perform(MockMvcRequestBuilders.get("/ToDoListItem/ByUser").accept(MediaType.APPLICATION_JSON))
+			.andExpect(status().isOk)
+			.andExpect(content().json("{}"));
+	}
 }
