@@ -11,7 +11,7 @@ This project contains a reference implementation for a Spring web backend using 
 - Spring
 - Dependency Injection
 - Repository
-- Testing
+- Testing (Unit, Integration, Acceptance)
 
 ---
 
@@ -52,6 +52,14 @@ There is no one correct way to do this, but you can look at the current tests an
 5) See that second item is remaining
 6) Delete an item that does not exist
 7) See an error message back for display to the user
+
+### Recommended Approach
+
+1) Write the acceptance test and this will reveal the structure of the service endpoints you need to write. 
+2) Write an integration test which will reveal the behavior of services you will need to write.
+3) Write the unit test for the services.
+4) Write the service code that makes the unit and integration tests pass.
+5) Write the controller code that makes the acceptance test pass.
 
 
 
