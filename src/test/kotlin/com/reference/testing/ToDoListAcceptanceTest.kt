@@ -10,7 +10,7 @@ class ToDoListAcceptanceTest : ToDoListIntegrationTestFixture() {
     val testToDoListItem2User1 = ToDoListItem(id = 2, description = "To do item 2 for user 1", 1)
     val testToDoListItem1User2 = ToDoListItem(id = 3, description = "To do item 1 for user 2", 2)
 
-    val testToDoListMap = mapOf(
+    val expectedTestToDoListMap = mapOf(
         testToDoListItem1User1.userId to listOf(
             testToDoListItem1User1,
             testToDoListItem2User1
@@ -31,6 +31,6 @@ class ToDoListAcceptanceTest : ToDoListIntegrationTestFixture() {
         var toDoListMapAfterAdditions = getAllToDoLists()
 
         // Then
-        Assertions.assertThat(toDoListMapAfterAdditions).isEqualTo(testToDoListMap)
+        Assertions.assertThat(toDoListMapAfterAdditions).isEqualTo(expectedTestToDoListMap)
     }
 }
